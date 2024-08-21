@@ -20,6 +20,7 @@ const config = {
   transpilePackages: ["geist"],
 };
 
+
 import { remarkCodeHike } from "@code-hike/mdx"
 import addMdx from '@next/mdx';
 

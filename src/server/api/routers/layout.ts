@@ -3,13 +3,11 @@ import {
   publicProcedure,
 } from "~/server/api/trpc";
 
-import { constantMap } from "~/utils/constants/constants";
+import { mapConstants } from "~/utils/constants/constants";
 
 export const layoutRouter = createTRPCRouter({
-  map: publicProcedure
+  getProblemMap: publicProcedure
     .query(() => {
-      return {
-        map: constantMap,
-      }
+      return mapConstants;
     }),
 });
