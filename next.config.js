@@ -7,7 +7,7 @@ await import("./src/env.js");
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   /**
    * If you are using `appDir` then you must comment the below `i18n` config out.
    *
@@ -20,4 +20,17 @@ const config = {
   transpilePackages: ["geist"],
 };
 
-export default config;
+
+import { remarkCodeHike } from "@code-hike/mdx"
+import addMdx from '@next/mdx';
+
+const withMDX = addMdx({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [
+      [remarkCodeHike, {}]
+    ],
+  },
+})
+
+export default withMDX(config)
