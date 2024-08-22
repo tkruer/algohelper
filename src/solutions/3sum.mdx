@@ -1,0 +1,58 @@
+# 3Sum Solution
+
+## Problem Statement
+
+Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.
+
+Notice that the solution set must not contain duplicate triplets.
+
+## Example
+
+**Input**: `nums = [-1,0,1,2,-1,-4]`  
+**Output**: `[[-1,-1,2],[-1,0,1]]`
+
+## Approach
+
+The "3Sum" problem can be solved using a combination of sorting and the two-pointer technique. Here's how the solution works:
+
+1. **Sorting the Array**: First, sort the array `nums`. This helps in easily skipping duplicates and efficiently finding the triplets using two pointers.
+
+2. **Fixing One Element**: Iterate through the array, and for each element, treat it as the first element of the triplet.
+
+3. **Two-Pointer Search**: For each fixed element, use two pointers (one starting just after the fixed element and the other starting from the end of the array) to find pairs that sum up to the negative of the fixed element.
+
+4. **Skipping Duplicates**: Skip any duplicate elements to avoid adding the same triplet to the result.
+
+5. **Edge Cases**: Handle edge cases where the input array is too small to contain any triplets.
+
+## Code Implementation
+
+```typescript
+function threeSum(nums: number[]): number[][] {
+  const results: number[][] = [];
+  nums.sort((a, b) => a - b);
+
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) continue; // Skip duplicates
+    let left = i + 1;
+    let right = nums.length - 1;
+
+    while (left < right) {
+      const sum = nums[i] + nums[left] + nums[right];
+      if (sum === 0) {
+        results.push([nums[i], nums[left], nums[right]]);
+        while (nums[left] === nums[left + 1]) left++; // Skip duplicates
+        while (nums[right] === nums[right - 1]) right--; // Skip duplicates
+        left++;
+        right--;
+      } else if (sum < 0) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+  }
+
+  return results;
+}
+```
