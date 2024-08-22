@@ -1,4 +1,3 @@
-import { api } from "~/utils/api";
 
 import { Progress } from "~/components/ui/progress"
 

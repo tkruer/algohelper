@@ -25,7 +25,7 @@ export function ProblemMap() {
           <CardHeader>
             <CardTitle>
               {problem.id + 1}. {problem.name}</CardTitle>
-            <CardDescription>{Math.random().toFixed()} / {problem.problemSets?.length || 0}</CardDescription>
+            <CardDescription>{Math.random().toFixed()} / {problem.problemSets?.length ?? 0}</CardDescription>
           </CardHeader>
           <CardContent>
             <ProgressBar value={10} max={100} />
